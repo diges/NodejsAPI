@@ -4,3 +4,9 @@ https://github.com/diges/NodejsAPI
 http://apigee.com/about/
 
 how to use maps?
+how to use facebook autorization?
+PUT
+
+
+// saves npm module to package.json
+npm install async --save
