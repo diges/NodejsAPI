@@ -1,0 +1,2 @@
+// -g install globaly, in unix +sudo
+npm install -g apigee-127
