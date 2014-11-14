@@ -1,2 +1,53 @@
 // -g install globaly, in unix +sudo
+sudo 
 npm install -g apigee-127
+
+a127
+
+a127 project create a127test
+
+> <proj name> a127 project start  // -m (test mode/ modifier)
+
+a127 project edit
+
+//in case an error need to create config.js
+
+http://j.mp/api-v1-node-data
+
+usergrid start
+download
+
+//for local version
+
+
+
+node install.js
+
+
+//http://api.usergrid.com/diges/sandbox/restaurants
+
+
+//a127 -> github -> avault - secure credentials
+
+
+j.mp/api-v1-node-restaurants     or   https://raw.githubusercontent.com/garazi/apigee-api-workshop/master/api/controllers/restaurants.js
+
+
+post
+header: application/JSON
+
+
+body:
+
+
+{
+	"title":"ADFADFa",
+	"reviewer":"adf",
+	"restID":4
+}
+
+j.mp/api-v1-node-post-controller
+https://gist.github.com/garazi/13580898772922ba5b97/
+
+
+
