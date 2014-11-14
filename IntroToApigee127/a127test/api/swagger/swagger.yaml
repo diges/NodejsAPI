@@ -1,0 +1,175 @@
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: Hello World App
+# during dev, should point to your local machine
+host: localhost
+# basePath prefixes all resource paths 
+basePath: /
+# 
+schemes:
+  # tip: remove http to make production-grade
+  - http
+  - https
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+x-a127-config: {}
+x-volos-resources: {}
+paths:
+  /hello:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: hello_world
+    x-volos-authorizations: {}
+    x-volos-apply: {}
+    get:
+      description: Returns 'Hello' to the caller
+      # used as the method name of the controller
+      operationId: hello
+      parameters:
+        - name: name
+          in: query
+          description: The name of the person to whom to say hello
+          required: false
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: HelloWorldResponse
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: ErrorResponse
+  /restaurants:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: restaurants
+    x-volos-authorizations: {}
+    x-volos-apply: {}
+    get:
+      description: Returns lists of restaurants
+      # used as the method name of the controller
+      operationId: getRestaurants
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: HelloWorldResponse
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: ErrorResponse
+  /restaurants/{id}:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: restaurants
+    x-volos-authorizations: {}
+    x-volos-apply: {}
+    get:
+      description: Returns single restaurant
+      # used as the method name of the controller
+      operationId: getRestaurantByID
+      parameters:
+        - name: id
+          in: path
+          description: The restID of the restaurant
+          required: true
+          type: number
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: HelloWorldResponse
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: ErrorResponse
+  /reviews:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: reviews
+    x-volos-authorizations: {}
+    x-volos-apply: {}
+    get:
+      description: Returns lists of reviews
+      # used as the method name of the controller
+      operationId: getReviews
+      parameters:
+        - name: restID
+          in: query
+          description: The RestID of the restaurant
+          required: false
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: HelloWorldResponse
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: ErrorResponse
+    post:
+      description: Post a reviews
+      # used as the method name of the controller
+      operationId: postReview
+      parameters:
+        - name: body
+          in: body
+          description: The body of ther review
+          required: false
+          schema:
+            $ref: Review
+      responses:
+        "201":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: Review
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: ErrorResponse
+# complex objects have schema definitions
+definitions:
+  Review:
+    properties: 
+      title:
+        type: string
+      loaction:
+        type: string
+      restID:
+        type: number
+      reviewer:
+        type: string
+      rating:
+        type: number
+      body:
+        type: string
+    required: ["title","restID","reviewer","rating"]
+  HelloWorldResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string
+      fakedata:
+        type: string
+      fakedataInt:
+        type: number
+  ErrorResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string
